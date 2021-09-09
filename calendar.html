@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calender</title>
+
+    <style>
+        .weekdays {
+          margin: 0;
+          padding: 10px 0;
+          background-color:rgb(14, 10, 10);
+        }
+
+        .weekdays li {
+          display: inline-block;
+          width: 13.6%;
+          color: rgb(240, 204, 204);
+          text-align: center;
+        }
+        
+
+        .month {
+          padding: 10px 0;
+          background: #eee;
+          margin: 0;
+        }
+        
+        .month li {
+          list-style-type: none;
+          display: inline-block;
+          width: 13.6%;
+          text-align: center;
+          margin-bottom: 5px;
+          font-size:12px;
+          color: #777;
+        }
+
+    </style>
+</head>
+<body>
+    <label for="month">Select Month:</label>
+    <select  id="month">
+        <option value="">Select Option</option>
+        <option value="Aug">August</option>
+        <option value="Sept">September</option>
+        <option value="Nov">November</option>
+        <option value="Dec">December</option>
+    </select>
+    <br>
+
+    <h1></h1>
+    <ul class="weekdays">
+        <li>Mon</li>
+        <li>Tue</li>
+        <li>Wed</li>
+        <li>Thu</li>
+        <li>Fri</li>
+        <li>Sat</li>
+        <li>Sun</li>
+    </ul>
+
+    <ul class='month'></ul>
+
+    <script>
+        const h1 = document.querySelector('h1');
+        const ul = document.querySelector('.month');
+        const select = document.querySelector('select');
+
+        function setMonth() {
+            const choice = select.value;
+            let days;
+            switch (choice) {
+                case 'Aug':
+                    days=31;
+                    break;
+                case 'Sept':
+                    days=31;
+                    break;
+                case 'Nov':
+                    days=30;
+                    break;
+                case 'Dec':
+                    days=31;
+                    break;
+                default:
+                    break;
+            }
+            return days;
+        }
+
+        select.onchange=function(){
+            const days = setMonth();
+
+            ul.innerHTML = '';
+            h1.textContent = select.value;
+            for(let i = 1; i <= days; i++) {
+                const listItem = document.createElement('li');
+                listItem.textContent = i;
+                ul.appendChild(listItem);
+            }
+
+        }
+        
+    </script>
+</body>
+</html>
